@@ -11,43 +11,69 @@
 	<div id="container">
 		<div id="content">
 			<div id="header">
-			<table width="100%">
-				<tr>
-					<td width="50%" align="left">
-						<h4>&nbsp;&nbsp;Identifier vous</h4>
-					</td>
-					<td align="right">
-					<div style="margin-top: 10px; margin-right: 10px;">
-						<form method="post" action="result_search">
-							<input class="search-query" id="keys" placeholder="mot cl&eacute;" type="text" name="keys"/>
-							<button class="btn btn-inverse" type="submit"><i class="icon-search icon-white" style="margin-right: 5px; margin-top: 1px;"></i></button>
-						</form>
-					</div>
-					</td>
-				</tr>
-			</table>
-			
-				<div class="control-group">
-						<label class="control-label" for="nom">Pseudo:</label>
-						<div class="controls">
-							<input type="text" id="pseudo" name="pseudo" class="search-query" placeholder="Ex: CharlesLeBoGoss" 
-							tabindex="1" autocomplete="off" style="text-transform: capitalize;" maxlength="50" required />
-						</div>
-				</div>
-				
-				<div class="control-group">
-						<label class="control-label" for="nom">Password:</label>
-						<div class="controls">
-							<input type="password" id="password" name="password" class="search-query" placeholder="Ex: CharlesLeBoGoss" 
-							tabindex="1" autocomplete="off" style="text-transform: capitalize;" maxlength="50" required />
-						</div>
-				</div>
-			
+				<table width="100%">
+					<tr>
+						<td width="50%" align="left">
+							<h4>&nbsp;&nbsp;Liste des messages</h4>
+						</td>
+						<td align="right">
+							<div style="margin-top: 10px; margin-right: 10px;"></div>
+						</td>
+					</tr>
+				</table>
 			</div>
 
+			<br>
+
+
+			<form id="login" method="post" action="login_confirm"
+				class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="nom">Pseudo:</label>
+					<div class="controls">
+						<input type="text" id="pseudo" name="pseudo" class="search-query"
+							placeholder="login" tabindex="1" autocomplete="off"
+							style="text-transform: capitalize;" maxlength="50" required />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="nom">Password:</label>
+					<div class="controls">
+						<input type="password" id="password" name="password"
+							class="search-query" placeholder="password" tabindex="1"
+							autocomplete="off" style="text-transform: capitalize;"
+							maxlength="50" required />
+					</div>
+				</div>
+			</form>
+
+			<br>
+			<div class="modal-footer">
+				<input style="width: 110px" form="login" type="submit"
+					id="b_create_contact" name="b_create_contact"
+					class="btn btn-primary" value="validez" />
+
+			</div>
+
+
+
+			<div id="footer">
+
+				<a href="#contact_add_mod" class="btn btn-primary"
+					data-toggle="modal"><b>+</b><i class="icon-user icon-white"
+					style="margin-right: 5px; margin-top: 1px;"></i>Creer un compte</a>
+			</div>
 		</div>
 	</div>
 
-
+	<!-- -------------------------------------------- -->
+	<!-- ----MODAL D'AJOUT/SUPPRESSION DE MESSAGE---- -->
+	<!-- -------------------------------------------- -->
+	<jsp:include page="adress_add.jsp" />
+	<jsp:include page="adress_delete.jsp" />
+		<jsp:include page="contact_add.jsp" />
+	<jsp:include page="contact_delete.jsp" />
+	<!-- -------------------------------- -->
 </body>
 </html>

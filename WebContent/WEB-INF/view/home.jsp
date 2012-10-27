@@ -50,9 +50,12 @@
 				</table>
 			</div>
 			<div id="footer">
-					<a href="#address_add_mod" class="btn btn-primary"
-						data-toggle="modal"><i class="icon-list-alt icon-white"
+			
+			<a href="#address_add_mod" class="btn btn-primary"
+						data-toggle="modal"><b>+</b><i class="icon-list-alt icon-white"
 						style="margin-right: 5px; margin-top: 1px;"></i>Publier un message</a>
+				<%-- <button type="submit" value="${contact.id}" name="AddNewAdressForm">Publier un message</button> --%>
+		
 					<a href="/tweetbook/homeFriends" class="btn btn-primary"
 						data-toggle="modal"><i class="icon-user icon-white"
 						style="margin-right: 5px; margin-top: 1px;"></i>Voir les ami(e)s</a>

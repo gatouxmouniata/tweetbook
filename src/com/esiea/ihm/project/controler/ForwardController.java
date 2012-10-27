@@ -17,6 +17,12 @@ public class ForwardController {
 		 System.out.println("Redirection sur la page de recherche...");
 		return "WEB-INF/view/formSearch.jsp";
 	}
+	
+	@RequestMapping(value="/login")
+	public String login(){
+		 System.out.println("Redirection sur la page de login...");
+		return "WEB-INF/view/login.jsp";
+	}
 		
 	
 }

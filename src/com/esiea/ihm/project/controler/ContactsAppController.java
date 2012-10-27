@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +28,7 @@ public class ContactsAppController {
 	@RequestMapping(value = "/addNewMessage", method = RequestMethod.POST)
 	public String addNewMessage(Model model,
 			@RequestParam("valider") String contactId,
-			@RequestParam("message") String message) {
+			@RequestParam("message") String message, HttpSession session) {
 		int id = Integer.parseInt(contactId);
 		
 		System.out.println("--------- "+id);
@@ -39,8 +42,8 @@ public class ContactsAppController {
 			checkMess++;
 		}
 		mess.setId(checkMess);
-		mess.setIdAuteur(user.getId());
-		if (id==user.getId())
+		mess.setIdAuteur((Integer) session.getAttribute("ID"));
+		if (id  == (Integer)session.getAttribute("ID"))
 			mess.setIdDestinateur(0);
 		else
 			mess.setIdDestinateur(id);
@@ -66,10 +69,12 @@ public class ContactsAppController {
 			@RequestParam("prenom") String prenom,
 			@RequestParam("email") String email,
 			@RequestParam("pseudo") String pseudo,
+			@RequestParam("password") String password,
 			Model model) {
 		
 		// Traitement des saisie du contacts (nom, prenom, email, pseudo)
 		Contacts contact = new Contacts(nom, prenom, email, pseudo);
+		contact.setPassword(password);
 		Integer check = 1;
 		if (oldMapContacts == null)
 			oldMapContacts = new HashMap<Integer, Contacts>();
@@ -79,7 +84,7 @@ public class ContactsAppController {
 		contact.setId(check);
 		oldMapContacts.put(check, contact);
 		
-		return "/homeFriends";
+		return "/login";
 	}
 
 	// FAIIIIIIIIT Efface les messages liee a un contact donnee ( Utiliser en cas d'effacement d'un contact)
@@ -222,12 +227,12 @@ public class ContactsAppController {
 		// Affiche l'ensemble des contacts 
 		// Récupre l'ensemble des données du model et renvoie une arraylist a la page d'affichage de la liste de contact
 		@RequestMapping(value = "/home")
-		public String showAll(Model model) {
+		public String showAll(Model model, HttpSession session) {
 			ArrayList<Messages> messagesArray = new ArrayList<Messages>();
 			Iterator<Integer> it = oldMapMessages.keySet().iterator();
 			while (it.hasNext()) {
 				Messages m = oldMapMessages.get(it.next());
-				if(m.getIdDestinateur() == 0 || m.getIdDestinateur() == user.getId())
+				if(m.getIdDestinateur() == 0 || m.getIdDestinateur() == session.getAttribute("ID"))
 					messagesArray.add(m);
 			}
 			
@@ -249,4 +254,26 @@ public class ContactsAppController {
 			model.addAttribute("contact", user);
 			return "WEB-INF/view/homeFriends.jsp";
 		}
+		
+		@RequestMapping(value = "/login_confirm")
+		public String login_confirm(Model model,@RequestParam("pseudo") String pseudo, @RequestParam("password") String password, HttpSession session) {
+			
+			Set<Integer> cles = oldMapContacts.keySet();
+			Iterator<Integer> it = cles.iterator();
+			Contacts contact = null;
+			while (it.hasNext()) {
+				
+				contact = oldMapContacts.get(it.next());
+				if(contact.getPassword().compareTo(password)==0)
+				{
+					session.setAttribute("ID", contact.getId());
+					return "/home";
+				}
+			}
+						
+	
+			return "/login";
+		}
+		
+		
 }

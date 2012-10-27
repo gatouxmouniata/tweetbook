@@ -24,6 +24,8 @@ public class Contacts implements Serializable {
 	private String nom;
 
 	private String email;
+	
+	private String password;
 
 	private Integer id;
 
@@ -81,5 +83,13 @@ public class Contacts implements Serializable {
 
 	public void setIdAmis(ArrayList<Integer> idAmis) {
 		this.idAmis = idAmis;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

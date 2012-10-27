@@ -50,7 +50,17 @@
 								<input type="email" id="email" name="email" class="search-query" placeholder="exemple@domaine.com"
 									tabindex="3" style="text-transform: none;" maxlength="60" required/>
 							</div>
-						</div>		
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="password">Password:</label>
+							<div class="controls">
+								<input type="password" id="password" name="password" class="search-query" placeholder="password"
+									tabindex="3" style="text-transform: none;" maxlength="60" required/>
+							</div>
+						</div>
+						
+								
 						<hr>
 					</td>
 				</tr>
