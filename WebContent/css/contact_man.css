@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+abbr,article,aside,audio,canvas,datlist,details,figure,dialog,footer,header,hgroup,mark,menu,meter,mark,nav,output,progress,section,time,video{display:block;}
+
+body{
+	margin:0 auto;
+	height:550px;
+	background-image: url('../img/use_your_illusion_@2X.png');
+}
+#container{
+	height: 540px;
+	width: 900px;
+	background-image: url("../img/cardboard_flat_@2X.png");
+	border-radius: 15px;
+	border: solid 2px orange;
+	margin-top: 18px;
+	margin-bottom: 20px;
+	padding: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#content{
+	margin: 0 auto;
+	width:780px;
+}
+#details{
+	height: auto;
+	width: 900px;
+	background-image: url("../img/cardboard_flat_@2X.png");
+	border-radius: 15px;
+	border: solid 2px orange;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	padding: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#header{
+	height:50px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border: groove 1px orange;
+	background-image: url("img/cardboard_flat_@2X.png");
+}
+#contacts{
+	height: 425px;
+	overflow: auto;
+	background-color: white;
+	text-align: center;
+	border: 3px thin #D7D8D8;
+	padding: 5px;
+}
+#footer{
+	height:40px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	padding-top: 15px;
+	border: groove 1px orange;
+	text-align: center;
+	background-image: url("img/cardboard_flat_@2X.png");
+}
