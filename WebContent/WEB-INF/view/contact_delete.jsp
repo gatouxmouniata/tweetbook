@@ -10,7 +10,10 @@
 	</div>   
 	<div class="modal-footer" style="text-align: center;">
 		<form method="post" action="remove">
-        	<button class="btn btn-danger" type="submit" id="button_delete" value="" name="Supprimer" style="cursor: pointer;"><i class="icon-trash icon-white" style="margin-right: 5px; margin-top: 1px;"></i>Oui</button>
+        	<button class="btn btn-danger" type="submit" id="button_delete" value="" name="Supprimer" style="cursor: pointer;">
+        		<i class="icon-trash icon-white" style="margin-right: 5px; margin-top: 1px;"></i>
+        		Oui
+        	</button>
         	<a class="btn btn-success" data-dismiss="modal" cursor: pointer;"><i class="icon-share-alt icon-white" style="margin-right: 5px; margin-top: 1px;"></i>Non</a>
        	</form>
 	</div>

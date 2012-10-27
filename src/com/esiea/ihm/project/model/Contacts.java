@@ -14,7 +14,7 @@ public class Contacts implements Serializable {
 		this.prenom = prenom;
 		this.pseudo = pseudo;
 		this.email = email;
-		this.id = 0;
+		this.id = 3;
 	}
 
 	private String pseudo;

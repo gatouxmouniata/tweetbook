@@ -42,10 +42,10 @@
 			</table>
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-primary" style="width: 110px" form="message_new" type="submit" value="${contact.id}" name="Valider">
-				<i class="icon-ok icon-white" style="margin-right: 5px; margin-top: 1px;"></i>
-				Publier
-			</button>
+			<button class="btn btn-danger" type="submit" id="valider" value="" name="valider" style="cursor: pointer;">
+        		<i class="icon-trash icon-white" style="margin-right: 5px; margin-top: 1px;"></i>
+        		valider
+        	</button>
 			<a class="btn btn-primary" style="width: 90px" data-dismiss="modal"><b>&times;</b>Annuler</a>
 		</div>
 	</form>

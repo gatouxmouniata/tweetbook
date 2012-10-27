@@ -108,7 +108,6 @@
 						data-toggle="modal"><b>+</b><i class="icon-list-alt icon-white"
 						style="margin-right: 5px; margin-top: 1px;"></i>Ajouter une adresse</a>
 				<%-- <button type="submit" value="${contact.id}" name="AddNewAdressForm">Ajouter une adresse</button> --%>
-			</form>
 		</div>
 	</div>
 	</div>

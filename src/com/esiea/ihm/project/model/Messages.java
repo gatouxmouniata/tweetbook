@@ -15,12 +15,22 @@ public class Messages implements Serializable {
 	
 	private Integer idAuteur;
 	
+	private Integer idDestinateur;
+	
 	public Messages(String message) {
 		super();
 		this.message = message;
 		this.id = 0;
 		this.idAuteur= 0;
 	}	
+
+	public Integer getIdDestinateur() {
+		return idDestinateur;
+	}
+
+	public void setIdDestinateur(Integer idDestinateur) {
+		this.idDestinateur = idDestinateur;
+	}
 
 	public Integer getId() {
 		return id;

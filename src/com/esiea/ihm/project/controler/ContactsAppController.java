@@ -26,20 +26,25 @@ public class ContactsAppController {
 	public String addNewMessage(Model model,
 			@RequestParam("Valider") String contactId,
 			@RequestParam("message") String message) {
+		int id = Integer.parseInt(contactId);
+		
+		System.out.println("--------- "+id);
+		System.out.println("--------- "+user.getId());
+		
 		
 		Messages mess = new Messages(message);
-		
-		// TRES SALE ------------------------------------------------------------------
-		//-----créer un id qui s'incrémente ---------------------------------------
-		//------------------------------------------------------------------
+
 		Integer checkMess = 1;
 		while (oldMapMessages.containsKey(checkMess)) {
 			checkMess++;
 		}
 		mess.setId(checkMess);
-		mess.setIdAuteur(Integer.parseInt(contactId));
+		mess.setIdAuteur(user.getId());
+		if (id==user.getId())
+			mess.setIdDestinateur(0);
+		else
+			mess.setIdDestinateur(id);
 		oldMapMessages.put(mess.getId(), mess);
-
 		//return updateContactForm(model, contactId.toString());
 		return "/home";
 	}
@@ -65,17 +70,16 @@ public class ContactsAppController {
 		
 		// Traitement des saisie du contacts (nom, prenom, email, pseudo)
 		Contacts contact = new Contacts(nom, prenom, email, pseudo);
-		HashMap<Integer, Contacts> oldMapContacts = this.oldMapContacts;
 		Integer check = 1;
 		if (oldMapContacts == null)
 			oldMapContacts = new HashMap<Integer, Contacts>();
 		while (oldMapContacts.containsKey(check)) {
 			check++;
-		}
+		} 
 		contact.setId(check);
 		oldMapContacts.put(check, contact);
 		
-		return "/home";
+		return "/homeFriends";
 	}
 
 	// FAIIIIIIIIT Efface les messages liee a un contact donnee ( Utiliser en cas d'effacement d'un contact)
@@ -219,18 +223,12 @@ public class ContactsAppController {
 		// RŽcupre l'ensemble des donnŽes du model et renvoie une arraylist a la page d'affichage de la liste de contact
 		@RequestMapping(value = "/home")
 		public String showAll(Model model) {
-			/*HashMap<Integer, Contacts> test = this.oldMapContacts;
-			ArrayList<Contacts> contactsArray = new ArrayList<Contacts>();
-			Set<Integer> cles = test.keySet();
-			Iterator<Integer> it = cles.iterator();
-			while (it.hasNext()) {
-				contactsArray.add(test.get(it.next()));
-			}*/
-
 			ArrayList<Messages> messagesArray = new ArrayList<Messages>();
 			Iterator<Integer> it = oldMapMessages.keySet().iterator();
 			while (it.hasNext()) {
-				messagesArray.add(oldMapMessages.get(it.next()));
+				Messages m = oldMapMessages.get(it.next());
+				if(m.getIdDestinateur() == 0 || m.getIdDestinateur() == user.getId())
+					messagesArray.add(m);
 			}
 			
 			model.addAttribute("messages", messagesArray);
@@ -240,27 +238,6 @@ public class ContactsAppController {
 		
 		@RequestMapping(value = "/homeFriends")
 		public String showAllFriends(Model model) {
-			Contacts c =new Contacts("ami1", "ami1", "ami1", "ami1");
-			Contacts c2 =new Contacts("ami2", "ami2", "ami2", "ami2");
-			
-			Integer check = 1;
-			if (oldMapContacts == null)
-				oldMapContacts = new HashMap<Integer, Contacts>();
-			while (oldMapContacts.containsKey(check)) {
-				check++;
-			}
-			c.setId(check);
-			oldMapContacts.put(check, c);
-			check = 1;
-			if (oldMapContacts == null)
-				oldMapContacts = new HashMap<Integer, Contacts>();
-			while (oldMapContacts.containsKey(check)) {
-				check++;
-			}
-			c2.setId(check);
-			oldMapContacts.put(check, c2);
-			
-			
 			ArrayList<Contacts> friendsArray = new ArrayList<Contacts>();
 			Set<Integer> cles = oldMapContacts.keySet();
 			Iterator<Integer> it = cles.iterator();

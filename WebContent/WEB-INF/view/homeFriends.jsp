@@ -19,7 +19,7 @@
 					<td align="right">
 					<div style="margin-top: 10px; margin-right: 10px;">
 						<form method="post" action="result_search">
-							<input class="search-query" id="keys" placeholder="mot cl&eacute;" type="text" name="keys"/>
+							<input class="search-query" id="keys" placeholder="chercher un ami(e)" type="text" name="keys"/>
 							<button class="btn btn-inverse" type="submit"><i class="icon-search icon-white" style="margin-right: 5px; margin-top: 1px;"></i></button>
 						</form>
 					</div>
@@ -31,12 +31,11 @@
 				<table class="table-striped caption" width="100%">
 					<c:forEach var="valueArray" items="${requestScope['friends']}">
 						<tr style="border-bottom: inset 1px silver;">
-							<td width="25%" align="center" height="140px"><a
-								href="javascript:document.forms[id='${valueArray.email}'].submit();"><img
+							<td width="25%" align="center" height="140px"><img
 									alt="contact_image" class="thumbnail" src="img/contact.jpg"
 									style="margin-top: 0px; cursor: pointer;" width="80px"
 									height="80px"
-									title="Voir/Modifier <c:out value="${valueArray.nom}"/>" /></a></td>
+									title="Voir/Modifier <c:out value="${valueArray.nom}"/>" /></td>
 							<td width="40%" align="left">
 								<div style="margi-left: 15px">
 									<p>
@@ -59,16 +58,11 @@
 							</td>
 							<td>
 								<div style="margin-right: 10px;">
-									<form method="POST" action="contact_details"
-										id="${valueArray.email}">
-										<input type="hidden" name="Update" value="${valueArray.id}" />
-										<button class="btn btn-success" type="submit"
-											style="margin-top: 10px; cursor: pointer;">
-											<i class="icon-list-alt icon-white"
-												style="margin-right: 5px; margin-top: 1px; cursor: pointer;"></i>
-											Envoyer un message
-										</button>
-									</form>
+									<a href="#address_add_mod" role="button"
+										class="btn btn-success" data-toggle="modal"
+										onclick="setId(${valueArray.id});" style="cursor: pointer;"><i
+										class="icon-trash icon-white"
+										style="margin-right: 5px; margin-top: 1px;"></i>Envoyer un message</a>
 									<a href="#contact_delete_mod" role="button"
 										class="btn btn-danger" data-toggle="modal"
 										onclick="setId(${valueArray.id});" style="cursor: pointer;"><i
@@ -80,11 +74,13 @@
 					</c:forEach>
 				</table>
 			</div>
+
 			<div id="footer">
 				<a href="#contact_add_mod" class="btn btn-primary"
 					data-toggle="modal"><b>+</b><i class="icon-user icon-white"
-					style="margin-right: 5px; margin-top: 1px;"></i>Ajouter un contact</a>
+					style="margin-right: 5px; margin-top: 1px;"></i>Ajouter un(e) ami(e)</a>
 			</div>
+
 		</div>
 	</div>
 
@@ -93,6 +89,9 @@
 	<!-- -------------------------------------------- -->
 	<jsp:include page="contact_add.jsp" />
 	<jsp:include page="contact_delete.jsp" />
+	<jsp:include page="adress_add.jsp" />
+	
+	<jsp:include page="adress_delete.jsp" />	
 	<!-- -------------------------------- -->
 </body>
 </html>
