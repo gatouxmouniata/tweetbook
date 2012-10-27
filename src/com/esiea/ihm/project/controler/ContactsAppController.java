@@ -24,7 +24,7 @@ public class ContactsAppController {
 	// FAIIIIIIITTTTTTTTTTTTTTT Ajoute un nouveau message dans la map message en fonction des entrees utilisateurs
 	@RequestMapping(value = "/addNewMessage", method = RequestMethod.POST)
 	public String addNewMessage(Model model,
-			@RequestParam("Valider") String contactId,
+			@RequestParam("valider") String contactId,
 			@RequestParam("message") String message) {
 		int id = Integer.parseInt(contactId);
 		

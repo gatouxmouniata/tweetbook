@@ -53,7 +53,7 @@
 					<a href="#address_add_mod" class="btn btn-primary"
 						data-toggle="modal"><i class="icon-list-alt icon-white"
 						style="margin-right: 5px; margin-top: 1px;"></i>Publier un message</a>
-					<a href="/contactsApp/homeFriends" class="btn btn-primary"
+					<a href="/tweetbook/homeFriends" class="btn btn-primary"
 						data-toggle="modal"><i class="icon-user icon-white"
 						style="margin-right: 5px; margin-top: 1px;"></i>Voir les ami(e)s</a>
 			</div>

@@ -31,10 +31,10 @@
 						<div class="control-group">
 							<label class="control-label" for="message">Message:</label>
 							<div class="controls">
+						
 								<textarea type="text" id="message" name="message" class="search-query" placeholder="write your message"
 									tabindex="2" style="text-transform: none;" maxlength="120" rows="3" required></textarea>
-								<!-- <input  type="text" id="message" name="message" class="search-query" placeholder="write your message"
-									tabindex="2" autocomplete="off" style="text-transform: capitalize;" maxlength="120" required/> -->
+						
 							</div> 
 						</div>
 					</td>
