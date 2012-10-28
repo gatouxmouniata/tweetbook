@@ -1,6 +1,10 @@
 package com.esiea.ihm.project.model;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 public class Contacts implements Serializable {
 
 	/**
@@ -92,5 +96,23 @@ public class Contacts implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JSONObject toJSON() {
+		JSONObject jObj = new JSONObject();
+		jObj.put("pseudo", pseudo);
+		jObj.put("prenom", prenom);
+		jObj.put("nom", nom);
+		jObj.put("email", email);
+		jObj.put("id", id);
+		
+		JSONArray jArray = new JSONArray();
+		Iterator<Integer> itr = idAmis.iterator();
+		while(itr.hasNext())
+			jArray.add(itr.next());
+		
+		jObj.put("idAdmis", jArray);
+		return jObj;
 	}
 }

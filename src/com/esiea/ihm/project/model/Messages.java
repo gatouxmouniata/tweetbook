@@ -2,6 +2,8 @@ package com.esiea.ihm.project.model;
 
 import java.io.Serializable;
 
+import org.json.simple.JSONObject;
+
 public class Messages implements Serializable {
 
 	/**
@@ -55,4 +57,15 @@ public class Messages implements Serializable {
 	public void setIdAuteur(Integer idAuteur) {
 		this.idAuteur = idAuteur;
 	} 
+	
+	@SuppressWarnings("unchecked")
+	public JSONObject toJSON() {
+		JSONObject jObj = new JSONObject();
+		jObj.put("message", message);
+		jObj.put("id", id);
+		jObj.put("idAuteur", idAuteur);
+		jObj.put("idDestinateur", idDestinateur);
+		
+		return jObj;
+	}
 }
