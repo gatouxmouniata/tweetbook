@@ -1,0 +1,7 @@
+Afin de déployer le plus simplement possible notre application sur la machine virtuelle fournie, nous avons décidé de passer par un serveur apache.
+Pour installer notre application, on a suivi les étapes suivantes :
+
+-	Installation de tomcat6 : sudo apt-get install tomcat6
+-	Placer le war fourni (tweetbook.war) dans var/lib/tomcat6/webapps 
+-	Taper la commande : service tomcat6 restart
+-	Attaquer le serveur avec le browser web : addresseIPduserveur:8080/tweetbook/
