@@ -62,7 +62,7 @@
 									<a href="#address_add_mod" role="button"
 										class="btn btn-success" data-toggle="modal"
 										onclick="setId(${valueArray.id});" style="cursor: pointer;"><i
-										class="icon-trash icon-white"
+										class="icon-list-alt icon-white"
 										style="margin-right: 5px; margin-top: 1px;"></i>Envoyer un message</a>
 										<%-- <button type="submit" id="Valider" value="${contact.id}" name="AddNewAdressForm">Envoyer un message</button> --%>
 									
@@ -82,6 +82,10 @@
 				<a href="/tweetbook/showAllUser" class="btn btn-primary"
 					data-toggle="modal"><b>+</b><i class="icon-user icon-white"
 					style="margin-right: 5px; margin-top: 1px;"></i>Ajouter un(e) ami(e)</a>
+					
+				<a href="/tweetbook/home" class="btn btn-primary"
+					data-toggle="modal"><b></b><i class="icon-home icon-white"
+					style="margin-right: 5px; margin-top: 1px;"></i>Retour à l'accueil</a>	
 			</div>
 
 		</div>

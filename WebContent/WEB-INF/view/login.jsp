@@ -5,7 +5,7 @@
 <html>
 <head>
 <jsp:include page="head.jsp" />
-<title>Liste des messages</title>
+<title>Identifiez vous</title>
 </head>
 <body>
 	<div id="container">
@@ -14,7 +14,7 @@
 				<table width="100%">
 					<tr>
 						<td width="50%" align="left">
-							<h4>&nbsp;&nbsp;Liste des messages</h4>
+							<h4>&nbsp;&nbsp;Identifiez vous</h4>
 						</td>
 						<td align="right">
 							<div style="margin-top: 10px; margin-right: 10px;"></div>
@@ -44,17 +44,17 @@
 							class="search-query" placeholder="password" tabindex="1"
 							autocomplete="off" style="text-transform: capitalize;"
 							maxlength="50" required />
+							
+							<input style="width: 110px" form="login" type="submit"
+					id="b_create_contact" name="b_create_contact"
+					class="btn btn-primary" value="validez" />
 					</div>
 				</div>
 			</form>
 
 			<br>
-			<div class="modal-footer">
-				<input style="width: 110px" form="login" type="submit"
-					id="b_create_contact" name="b_create_contact"
-					class="btn btn-primary" value="validez" />
-
-			</div>
+			
+			
 
 
 

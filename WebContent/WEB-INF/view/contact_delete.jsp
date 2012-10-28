@@ -5,7 +5,7 @@
 		<h3>Suppresion de contact</h3>
 	</div>
 	<div class="modal-body">
-		<h4 style="text-align: center;">Ce contact et ses don&eacute;es/adresses seront supprim&eacute;es.<br>Voulez-vous continuer?</h4>
+		<h4 style="text-align: center;">Supprimer de votre liste d'amis?</h4>
 		<br>
 	</div>   
 	<div class="modal-footer" style="text-align: center;">

@@ -13,21 +13,10 @@
 				<!-- ------------------- -->
 				<!-- NEW MESSAGE DETAILS -->
 				<!-- ------------------- -->
-				<!-- <tr>
-					<td align="center">
-						<label style="margin-left: 30px; font-weight: bold;">Adresse principale:</label>
-					</td>
-				</tr>
-				 -->
+
 				<tr>
 					<td>
-						<div class="control-group">
-							<label class="control-label" for="keyword">Keyword:</label>
-							<div class="controls">		
-								<input  type="text" id="keyword" name="keyword" class="search-query" placeholder="keyword"
-									tabindex="1" autocomplete="off" style="text-transform: none; width: 60px;"/>
-							</div> 
-						</div>
+						
 						<div class="control-group">
 							<label class="control-label" for="message">Message:</label>
 							<div class="controls">
@@ -42,11 +31,11 @@
 			</table>
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-danger" type="submit" id="valider" value="" name="valider" style="cursor: pointer;">
-        		<i class="icon-trash icon-white" style="margin-right: 5px; margin-top: 1px;"></i>
+			<button class="btn btn-success" type="submit" id="valider" value="" name="valider" style="cursor: pointer;">
+        		<i class="icon-list-alt icon-white" style="margin-right: 5px; margin-top: 1px;"></i>
         		valider
         	</button>
-			<a class="btn btn-primary" style="width: 90px" data-dismiss="modal"><b>&times;</b>Annuler</a>
+			<a class="btn btn-danger" style="width: 90px" data-dismiss="modal">Annuler</a>
 		</div>
 	</form>
 </div>

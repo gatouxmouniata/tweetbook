@@ -19,7 +19,7 @@
 					<td align="right">
 					<div style="margin-top: 10px; margin-right: 10px;">
 						<form method="post" action="result_search">
-							<input class="search-query" id="keys" placeholder="mot cl&eacute;" type="text" name="keys"/>
+							<input class="search-query" id="keys" placeholder="Rechercher un ami" type="text" name="keys"/>
 							<button class="btn btn-inverse" type="submit"><i class="icon-search icon-white" style="margin-right: 5px; margin-top: 1px;"></i></button>
 						</form>
 					</div>
@@ -58,6 +58,10 @@
 					<a href="/tweetbook/homeFriends" class="btn btn-primary"
 						data-toggle="modal"><i class="icon-user icon-white"
 						style="margin-right: 5px; margin-top: 1px;"></i>Voir les ami(e)s</a>
+						
+					<a href="/tweetbook/showAllMyMessages" class="btn btn-primary"
+						data-toggle="modal"><i class="icon-list-alt icon-white"
+						style="margin-right: 5px; margin-top: 1px;"></i>Gérer mes messages</a>
 			</div>
 		</div>
 	</div>

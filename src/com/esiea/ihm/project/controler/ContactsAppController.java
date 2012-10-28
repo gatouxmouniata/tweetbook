@@ -189,7 +189,7 @@ public class ContactsAppController {
 		while (it.hasNext()) {
 
 			contact = oldMapContacts.get(it.next());
-			if(contact.getPassword().compareTo(password)==0)
+			if(contact.getPassword().compareTo(password)==0 && contact.getPseudo().compareTo(pseudo)==0)
 			{
 				session.setAttribute("ID", contact.getId());
 				return "/home";
@@ -265,6 +265,12 @@ public String removeMessages(Model model,
 	HashMap<Integer, Messages> messMap = this.oldMapMessages;
 	messMap.remove(Integer.parseInt(supprimer));
 	return "/showAllMyMessages";
+}
+
+@RequestMapping(value = "/remove", method = RequestMethod.POST)
+public String removeContact(@RequestParam("Supprimer") String supprimer, HttpSession session) {
+	oldMapContacts.get(session.getAttribute("ID")).getIdAmis().remove((Integer)Integer.parseInt(supprimer));
+	return "/home";
 }
 
 	

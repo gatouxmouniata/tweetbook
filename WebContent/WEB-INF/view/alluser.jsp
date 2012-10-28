@@ -5,7 +5,7 @@
 <html>
 <head>
 <jsp:include page="head.jsp" />
-<title>Liste des ami(e)s</title>
+<title>Liste des utilisateurs</title>
 </head>
 <body>
 	<div id="container">
@@ -60,7 +60,13 @@
 								<div style="margin-right: 10px;">
 									
 									<form method="post" action="addFriend">
-										<button type="submit" id="Valider" value="${valueArray.id}" name="Valider">Ajouter à mes amis</button>
+									
+										<button class="btn btn-success" type="submit" id="Valider"
+												value="${valueArray.id}" name="Valider"
+												style="cursor: pointer;">
+												<i class="icon-trash icon-white"
+													style="margin-right: 5px; margin-top: 1px;"></i> Ajouter à mes amis
+											</button>
 									</form>
 								
 									
@@ -73,7 +79,7 @@
 
 			<div id="footer">
 				<a href="/tweetbook/home" class="btn btn-primary"
-					data-toggle="modal"><b>+</b><i class="icon-user icon-white"
+					data-toggle="modal"><b></b><i class="icon-home icon-white"
 					style="margin-right: 5px; margin-top: 1px;"></i>Retour à l'accueil</a>
 			</div>
 
