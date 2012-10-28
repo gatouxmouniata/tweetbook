@@ -15,6 +15,7 @@ public class Contacts implements Serializable {
 		this.pseudo = pseudo;
 		this.email = email;
 		this.id = 3;
+		this.idAmis = new ArrayList<Integer>();
 	}
 
 	private String pseudo;

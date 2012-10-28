@@ -79,7 +79,7 @@
 			</div>
 
 			<div id="footer">
-				<a href="#contact_add_mod" class="btn btn-primary"
+				<a href="/tweetbook/showAllUser" class="btn btn-primary"
 					data-toggle="modal"><b>+</b><i class="icon-user icon-white"
 					style="margin-right: 5px; margin-top: 1px;"></i>Ajouter un(e) ami(e)</a>
 			</div>

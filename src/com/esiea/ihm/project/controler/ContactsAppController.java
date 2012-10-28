@@ -30,11 +30,7 @@ public class ContactsAppController {
 			@RequestParam("valider") String contactId,
 			@RequestParam("message") String message, HttpSession session) {
 		int id = Integer.parseInt(contactId);
-		
-		System.out.println("--------- "+id);
-		System.out.println("--------- "+user.getId());
-		
-		
+
 		Messages mess = new Messages(message);
 
 		Integer checkMess = 1;
@@ -51,17 +47,6 @@ public class ContactsAppController {
 		//return updateContactForm(model, contactId.toString());
 		return "/home";
 	}
-
-	// Redirige vers le formulaire d'ajout d'une adress à un contact en gardant l'id du contact dans une variable
-	@RequestMapping(value = "/addNewAdressForm", method = RequestMethod.POST)
-	public String addNewMessageForm(Model model,
-			@RequestParam("AddNewAdressForm") String contactId) {
-		
-		model.addAttribute("contactId", contactId);
-		return "WEB-INF/view/formNewAdd.jsp";
-
-	}
-
 	
 	// FAIIIIIIIIIT Ajoute un nouveau contact à la map de contact et redirige vers la vue liste des contacts
 	@RequestMapping(value = "/contact_add", method = RequestMethod.POST)
@@ -137,10 +122,8 @@ public class ContactsAppController {
 
 	// FAIIIIIIIIITT Supprime un contact et les messages qui lui sont lies
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public String removeContact(@RequestParam("Supprimer") String supprimer) {
-		HashMap<Integer, Contacts> test = this.oldMapContacts;
-		deleteMessagesByContactId(Integer.parseInt(supprimer));
-		test.remove(Integer.parseInt(supprimer));
+	public String removeContact(@RequestParam("Supprimer") String supprimer, HttpSession session) {
+		oldMapContacts.get(session.getAttribute("ID")).getIdAmis().remove((Integer)Integer.parseInt(supprimer));
 		return "/home";
 	}
 
@@ -228,30 +211,68 @@ public class ContactsAppController {
 		// Récupre l'ensemble des données du model et renvoie une arraylist a la page d'affichage de la liste de contact
 		@RequestMapping(value = "/home")
 		public String showAll(Model model, HttpSession session) {
-			ArrayList<Messages> messagesArray = new ArrayList<Messages>();
+			//ArrayList<Messages> messagesArray = new ArrayList<Messages>();
+			ArrayList<String> messagesFormated = new ArrayList<String>();
 			Iterator<Integer> it = oldMapMessages.keySet().iterator();
 			while (it.hasNext()) {
 				Messages m = oldMapMessages.get(it.next());
-				if(m.getIdDestinateur() == 0 || m.getIdDestinateur() == session.getAttribute("ID"))
-					messagesArray.add(m);
+				
+				// Si le message est public ou si il m'est destiné ou si j'en suis l'auteur
+				if(m.getIdDestinateur() == 0 || m.getIdDestinateur() == session.getAttribute("ID") || m.getIdAuteur() == session.getAttribute("ID"));
+				{
+					
+						String message = null;
+						
+						// Si le message est public et ( que je suis amis avec l'auteur ou que j'en suis l'auteur )
+						if(m.getIdDestinateur() == 0 && ( oldMapContacts.get(session.getAttribute("ID")).getIdAmis().contains(m.getIdAuteur()) || m.getIdAuteur() == session.getAttribute("ID") ))
+						{	
+							message = 	"<strong>"+oldMapContacts.get(m.getIdAuteur()).getPseudo()+":</strong>"
+										+"<br>"
+										+m.getMessage();
+						}
+						
+						// Si je suis le destinataire du message
+						else if(m.getIdDestinateur() == session.getAttribute("ID"))
+						{
+							message = 	"<strong>"+oldMapContacts.get(m.getIdAuteur()).getPseudo()+" (Privé):</strong>"
+										+"<br>"
+										+m.getMessage();
+						}
+						
+						// Si je suis l'auteur du message
+						else if(m.getIdAuteur() == session.getAttribute("ID"))
+						{
+							message = 	"<strong>"+oldMapContacts.get(m.getIdAuteur()).getPseudo()+" (Privé):</strong>"
+									+"@"+oldMapContacts.get(m.getIdDestinateur()).getPseudo()
+									+"<br>"
+									+m.getMessage();
+						}
+						
+						messagesFormated.add(message);
+										
+				}
 			}
-			
-			model.addAttribute("messages", messagesArray);
-			model.addAttribute("contact", user);
+			model.addAttribute("messagesFormated",messagesFormated);
+			model.addAttribute("contact", oldMapContacts.get(session.getAttribute("ID")));
 			return "WEB-INF/view/home.jsp";
 		}
 		
 		@RequestMapping(value = "/homeFriends")
-		public String showAllFriends(Model model) {
+		public String showAllFriends(Model model, HttpSession session) {
 			ArrayList<Contacts> friendsArray = new ArrayList<Contacts>();
 			Set<Integer> cles = oldMapContacts.keySet();
 			Iterator<Integer> it = cles.iterator();
+			
+			Contacts contact = null; 
+			
 			while (it.hasNext()) {
-				friendsArray.add(oldMapContacts.get(it.next()));
+				contact = oldMapContacts.get(it.next());
+				if(oldMapContacts.get(session.getAttribute("ID")).getIdAmis().contains(contact.getId()))
+					friendsArray.add(contact);
 			}
 						
 			model.addAttribute("friends", friendsArray);
-			model.addAttribute("contact", user);
+			model.addAttribute("contact", oldMapContacts.get(session.getAttribute("ID")));
 			return "WEB-INF/view/homeFriends.jsp";
 		}
 		
@@ -273,6 +294,35 @@ public class ContactsAppController {
 						
 	
 			return "/login";
+		}
+		
+		
+		@RequestMapping(value = "/showAllUser")
+		public String showAllUsers(Model model, HttpSession session) {
+			ArrayList<Contacts> friendsArray = new ArrayList<Contacts>();
+			Set<Integer> cles = oldMapContacts.keySet();
+			Iterator<Integer> it = cles.iterator();
+			
+			Contacts contact = null; 
+			
+			while (it.hasNext()) {
+				contact = oldMapContacts.get(it.next());
+				if(!oldMapContacts.get(session.getAttribute("ID")).getIdAmis().contains(contact.getId()) && contact.getId() != session.getAttribute("ID"))
+					friendsArray.add(contact);
+			}
+						
+			model.addAttribute("friends", friendsArray);
+			model.addAttribute("contact", oldMapContacts.get(session.getAttribute("ID")));
+			return "WEB-INF/view/alluser.jsp";
+		}
+		
+
+		@RequestMapping(value = "/addFriend")
+		public String addFriend(Model model, HttpSession session, @RequestParam("Valider") Integer contactID) {
+			
+			oldMapContacts.get(session.getAttribute("ID")).getIdAmis().add(contactID);
+	
+			return "/homeFriends";
 		}
 		
 		

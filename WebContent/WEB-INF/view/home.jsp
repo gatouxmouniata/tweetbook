@@ -29,17 +29,15 @@
 			</div>
 			<div id="contacts">
 				<table class="table-striped caption" width="100%">
-					<c:forEach var="valueArray" items="${requestScope['messages']}">
+					<c:forEach var="valueArray" items="${requestScope['messagesFormated']}">
 						<tr style="border-bottom: inset 1px silver;">
 							
 							<td width="40%" align="left">
 								<div style="margi-left: 15px">
-									<p>
-										&nbsp;&nbsp;<strong>Message: </strong>
-									</p>
-									<p>
-										<c:out value="${valueArray.message}" />
-									</p>
+									
+									
+										<c:out value='${valueArray}' escapeXml="false"/>
+									
 									
 								</div>
 							</td>
@@ -52,9 +50,10 @@
 			<div id="footer">
 			
 			<a href="#address_add_mod" class="btn btn-primary"
+						onclick="setId(${contact.id});"
 						data-toggle="modal"><b>+</b><i class="icon-list-alt icon-white"
 						style="margin-right: 5px; margin-top: 1px;"></i>Publier un message</a>
-				<%-- <button type="submit" value="${contact.id}" name="AddNewAdressForm">Publier un message</button> --%>
+				<%-- <button type="submit" id="valider" value="${contact.id}" name="AddNewAdressForm">Publier un message</button> --%>
 		
 					<a href="/tweetbook/homeFriends" class="btn btn-primary"
 						data-toggle="modal"><i class="icon-user icon-white"
@@ -66,8 +65,10 @@
 	<!-- -------------------------------------------- -->
 	<!-- ----MODAL D'AJOUT/SUPPRESSION DE MESSAGE---- -->
 	<!-- -------------------------------------------- -->
-	<jsp:include page="adress_add.jsp" />
-	<jsp:include page="adress_delete.jsp" />
+	<jsp:include page="contact_add.jsp" />
+	<jsp:include page="contact_delete.jsp" />
+	<jsp:include page="adress_add.jsp" />	
+	<jsp:include page="adress_delete.jsp" />	
 	<!-- -------------------------------- -->
 </body>
 </html>
